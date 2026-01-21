@@ -10,14 +10,46 @@ export default function BuilderText() {
         // Split text for individual character animation
         const textElement = textRef.current;
         if (textElement && !textElement.querySelector('.char')) {
-            const text = textElement.textContent.trim();
+            // We want "AI PROJECT MANAGER"
+            // On mobile: AI PROJECT <br> MANAGER
+            // On desktop: AI PROJECT MANAGER
+            // Since we split by char, we can insert a break element.
+
+            const text = "AI PROJECT MANAGER";
             textElement.innerHTML = '';
-            text.split('').forEach(char => {
-                const span = document.createElement('span');
-                span.textContent = char;
-                span.className = 'char inline-block'; // inline-block needed for transform
-                if (char === ' ') span.style.width = '0.6em';
-                textElement.appendChild(span);
+
+            const words = ["AI", "PROJECT", "MANAGER"];
+
+            words.forEach((word, wordIndex) => {
+                // Add word container or just chars?
+                // To keep existing animation working, we just need .char elements everywhere.
+                // We can add a break after "PROJECT" that is hidden on desktop.
+
+                word.split('').forEach(char => {
+                    const span = document.createElement('span');
+                    span.textContent = char;
+                    span.className = 'char inline-block';
+                    textElement.appendChild(span);
+                });
+
+                // Add space after word if not last
+                if (wordIndex < words.length - 1) {
+                    const space = document.createElement('span');
+                    space.innerHTML = '&nbsp;';
+                    space.className = 'char inline-block';
+                    textElement.appendChild(space);
+
+                    // Specific logic for "PROJECT" -> "MANAGER" break
+                    if (word === "PROJECT") {
+                        const br = document.createElement('br');
+                        br.className = 'md:hidden'; // Only break on mobile
+                        textElement.appendChild(br);
+                        // Also on mobile we might want to hide the space? 
+                        // <br> will force new line. The space might remain at end of line or start of next.
+                        // CSS: display: none on mobile for that specific space?
+                        space.className += ' hidden md:inline-block';
+                    }
+                }
             });
         }
 
@@ -77,7 +109,7 @@ export default function BuilderText() {
     }, []);
 
     return (
-        <div ref={containerRef} className="relative h-24 w-full flex items-center justify-center overflow-hidden">
+        <div ref={containerRef} className="relative h-auto min-h-24 w-full flex items-center justify-center overflow-hidden py-4">
             <h2
                 ref={textRef}
                 className="text-5xl md:text-7xl font-bold font-mono text-yellow-400 text-center tracking-tighter drop-shadow-[0_4px_0_rgba(168,85,247,0.5)]"

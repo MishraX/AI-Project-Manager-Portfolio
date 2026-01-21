@@ -4,6 +4,7 @@ import Loader from '@/components/Loader';
 import Navbar from '@/components/Navbar';
 import NetworkBackground from '@/components/NetworkBackground';
 import BuilderText from '@/components/BuilderText';
+import AiRoleDescription from '@/components/AiRoleDescription';
 import InteractiveSentence from '@/components/InteractiveSentence';
 import InfiniteTools from '@/components/InfiniteTools';
 import SimpleSocialFooter from '@/components/SimpleSocialFooter';
@@ -17,9 +18,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(true);
   const networkRef = useRef();
 
-
   const useScramble = (text) => {
-    // ... (keep same)
     const [display, setDisplay] = useState(text);
     const chars = "!<>-_\\/[]{ }—=+*^?#________";
     const scramble = () => {
@@ -48,9 +47,19 @@ export default function Home() {
   };
 
   const handleDownloadCV = (e) => {
-    e.preventDefault();
+    // Trigger animation
     if (networkRef.current) networkRef.current.triggerCVAnimation();
-    setTimeout(() => { alert("CV Download Started (Demo)"); }, 1500);
+
+    // Direct download link
+    const cvUrl = "/cv/Suraj Mishra- Technical Project Manager.pdf";
+
+    // Create a temporary link to trigger download
+    const link = document.createElement('a');
+    link.href = cvUrl;
+    link.download = "Suraj_Mishra_CV.pdf"; // Renamed for cleaner download
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   };
 
   return (
@@ -103,6 +112,9 @@ export default function Home() {
                 </div>
               </div>
             </section>
+
+            {/* AI Role Description Section */}
+            <AiRoleDescription />
 
             {/* 1. Work Experience Section (Corporate Dashboard) */}
             <section id="work" className="w-full relative z-10 bg-transparent">

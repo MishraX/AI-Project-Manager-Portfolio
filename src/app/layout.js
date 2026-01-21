@@ -1,5 +1,6 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import CreatureCursor from "@/components/CreatureCursor";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -18,6 +19,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={outfit.variable} suppressHydrationWarning>
       <body className={outfit.className} suppressHydrationWarning>
+        <CreatureCursor />
         {children}
       </body>
     </html>
