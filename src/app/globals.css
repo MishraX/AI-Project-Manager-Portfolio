@@ -1,0 +1,69 @@
+@import "tailwindcss";
+
+@theme {
+  --color-skin: #f7d5ba;
+  --font-outfit: var(--font-outfit);
+  --font-space: var(--font-space);
+  --animate-gradient: gradient 8s linear infinite;
+  --animate-infinite-scroll: infinite-scroll 40s linear infinite;
+
+  @keyframes gradient {
+    0% {
+      background-position: 0% 50%;
+    }
+
+    50% {
+      background-position: 100% 50%;
+    }
+
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  @keyframes infinite-scroll {
+    from {
+      transform: translateX(0);
+    }
+
+    to {
+      transform: translateX(-50%);
+    }
+  }
+}
+
+:root {
+  --background: #000000;
+  --foreground: #ededed;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-outfit), sans-serif;
+  cursor: default;
+  /* Optional custom cursor logic could go here */
+}
+
+/* Base Utility for hover glitch effect on text if needed */
+.hover-glitch {
+  position: relative;
+}
+
+/* Hide Scrollbar for cleaner look if desired */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
