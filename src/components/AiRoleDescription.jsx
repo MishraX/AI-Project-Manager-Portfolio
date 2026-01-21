@@ -109,7 +109,7 @@ export default function AiRoleDescription() {
                 ref={containerRef}
                 onMouseMove={handleMouseMove}
                 onTouchMove={handleTouchMove}
-                className="relative w-full max-w-6xl px-8 ml-4 md:ml-12 lg:ml-24 cursor-crosshair select-none touch-none md:touch-auto"
+                className="relative w-full max-w-6xl px-8 ml-4 md:ml-12 lg:ml-24 cursor-crosshair select-none touch-auto"
             /* touch-none prevents scrolling while using flashlight on mobile, if desired. 
                If user wants to scroll, they can touch outside. 
                "compatible with phone... including flashlight" implies functional flashlight. */
