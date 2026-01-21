@@ -1,5 +1,6 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next";
 import CreatureCursor from "@/components/CreatureCursor";
 
 const outfit = Outfit({
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className={outfit.className} suppressHydrationWarning>
         <CreatureCursor />
         {children}
+        <Analytics />
       </body>
     </html>
   );
