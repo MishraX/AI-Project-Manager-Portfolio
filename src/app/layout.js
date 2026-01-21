@@ -1,6 +1,7 @@
 import { Outfit } from "next/font/google";
 import "./globals.css";
 import CreatureCursor from "@/components/CreatureCursor";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -21,6 +22,7 @@ export default function RootLayout({ children }) {
       <body className={outfit.className} suppressHydrationWarning>
         <CreatureCursor />
         {children}
+        <SpeedInsights />
       </body>
     </html>
   );
